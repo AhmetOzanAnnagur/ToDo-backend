@@ -67,4 +67,5 @@ def register_request(request):
 
 def logout_request(request):
     logout(request)
+    print(request)
     return redirect("home")
