@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block css_files %}{% endblock %}
+        <title>
+            {% block title %}{% endblock %} | task manager
+        </title>
+    </head>
+    <body>
+        {%include 'partials/_navbar.html'%}
+
+        {% block content %}{% endblock %}
+
+        <!-- js files -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>      <!-- bookstrap js files -->
+        <script src="{% static 'js/base.js' %}"></script>               <!-- js files we want to add globally -->
+        {% block js_files%} {%endblock%}                                <!-- specific js files for each html files -->
+    </body>
+</html>

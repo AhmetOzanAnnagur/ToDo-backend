@@ -1,0 +1,24 @@
+<div class="list group">
+
+    {%for list in lists%}
+
+        {% if list.title == "Tasks To Do" %}
+            <a href="{% url 'task_by_is_done' 0 %}"
+               class="list-group-item list-group-item-action {% if selected_list == '0' %}active{% endif %}">
+                {{ list.title|title }}
+            </a>
+        {% elif list.title == "Tasks Completed" %}
+            <a href="{% url 'task_by_is_done' 1 %}"
+               class="list-group-item list-group-item-action {% if selected_list == '1' %}active{% endif %}">
+                {{ list.title|title }}
+            </a>
+        {% else %}
+            {% if list.slug == selected_list %}
+                <a class="list-group-item list-group-item-action active" href="{% url 'task_by_list' list.slug %}">{{list.title|title}}</a>
+            {% else %}
+                <a class="list-group-item list-group-item-action" href="{% url 'task_by_list' list.slug %}">{{list.title|title}}</a>
+            {% endif %}
+        {% endif %}   
+    {%endfor%}
+
+</div>

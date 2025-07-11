@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+{% endblock %}
+
+{% block title %}
+    Add Task
+{% endblock %}
+
+{% block content %}
+    
+    <div class="container mt-3">
+        <div class="col">
+            <h1>Add Task</h1>
+            <hr>
+            <form method="POST">
+                {% csrf_token %}
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {% endif %}
+                <div class="mb-3">
+                    <label for="taskname" class="form-label">task name</label>
+                    <input type="text" class="form-control" name="taskname" value="{{taskname}}">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">description</label>
+                    <input type="text" class="form-control" name="description" value="{{description}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="deadline" class="form-label">deadline</label>
+                    <input type="date" class="form-control" name="deadline" value="{{deadline}}">
+                </div>
+              
+                <div class="mb-3"></div>
+                <input type="submit" value="ADD TASK" class="btn btn-primary">                                               
+            </form>
+        </div>
+    </div>
+ 
+{% endblock %}
+
+{% block js_files%}
+    <script src="{% static 'core/js/script.js' %}"></script>
+{%endblock%}

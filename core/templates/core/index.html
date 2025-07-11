@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+{% endblock %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block content %}
+    
+    <div class="container mt-3">
+        <div class="row">
+
+            <div class="col-3">
+                {% include 'partials/_lists.html'%}
+            </div>
+            
+            <div class="col-3">
+                <h1>Your Tasks</h1>
+                <hr>
+                {% for task in tasks %}
+                    {% comment %} {% if task.is_done %}
+                        {%include 'core/partials/_movie.html'%}
+                    {% endif %} {% endcomment %}
+                    {%include 'core/partials/_task.html'%}
+                {% endfor%}
+
+                 <form action="{% url 'add_task' %}" method="get">
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                </form>
+            </div>
+            
+        </div>
+       
+    </div>
+
+{% endblock %}
+
+{% block js_files%}
+    <script src="{% static 'core/js/script.js' %}"></script>
+{%endblock%}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+    All the tasks
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="row">
+
+            <div class="col-3">
+                {% include 'partials/_lists.html'%}
+            </div>
+            
+            <div class="col-3">
+                <h1>All the tasks</h1>
+                <hr>
+                {% if tasks|length > 0 %}
+                    {% for task in tasks%}
+                        {%include 'core/partials/_task.html'%}
+                    {% endfor%}
+                {% else %}
+                    <div class="alert alert-warning">No Task</div>
+                {% endif %}
+                <form action="{% url 'add_task' %}" method="get">
+                    <button type="submit" class="btn btn-primary">Add New Task</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
